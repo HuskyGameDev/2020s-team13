@@ -1,0 +1,21 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TestScript : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+    int Hello(int x, int y)
+    {
+        return x + y;  
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
