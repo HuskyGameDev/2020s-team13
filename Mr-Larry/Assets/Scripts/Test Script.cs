@@ -9,10 +9,6 @@ public class TestScript : MonoBehaviour
     {
         
     }
-    int Hello(int x, int y)
-    {
-        return x + y;  
-    }
     // Update is called once per frame
     void Update()
     {
