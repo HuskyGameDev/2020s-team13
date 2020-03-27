@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCMovement : MonoBehaviour {
 
-    public Rigidbody rb;
+    public Rigidbody2D rb;
     public float speed;
     public float swimTime;
     private float swimCounter;
@@ -14,39 +14,40 @@ public class NPCMovement : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update() {
+        
         swimCounter -= Time.deltaTime;
         if(swimCounter < 0) {
             chooseDirection();
         } else {
             switch(swimDirection) {
                 case 0:
-                    rb.velocity = new Vector3(0, speed, 0);
+                    rb.velocity = new Vector2(0, speed);
                     break;
                 case 1:
-                    rb.velocity = new Vector3(speed, speed, 0);
+                    rb.velocity = new Vector2(speed, speed);
                     break;
                 case 2:
-                    rb.velocity = new Vector3(speed, 0, 0);
+                    rb.velocity = new Vector2(speed, 0);
                     break;
                 case 3:
-                    rb.velocity = new Vector3(speed, -speed, 0);
+                    rb.velocity = new Vector2(speed, -speed);
                     break;
                 case 4:
-                    rb.velocity = new Vector3(0, -speed, 0);
+                    rb.velocity = new Vector2(0, -speed);
                     break;
                 case 5:
-                    rb.velocity = new Vector3(-speed, -speed, 0);
+                    rb.velocity = new Vector2(-speed, -speed);
                     break;
                 case 6:
-                    rb.velocity = new Vector3(-speed, 0, 0);
+                    rb.velocity = new Vector2(-speed, 0);
                     break;
                 case 7:
-                    rb.velocity = new Vector3(-speed, speed, 0);
+                    rb.velocity = new Vector2(-speed, speed);
                     break;
             }
         }
