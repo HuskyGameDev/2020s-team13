@@ -11,9 +11,13 @@ public class SliderScript : MonoBehaviour
         
     }
     public Slider slider;
-    public int slide = 20;
-    public int power;
-    
+    public int slide = 10;//20;
+    public static int power;
+    public Image fill;
+    public Color red;
+    public Color orange;
+    public Color yellow;
+    public Color white;
 
     // Update is called once per frame
     void Update()
@@ -25,22 +29,27 @@ public class SliderScript : MonoBehaviour
         if(slider.value < 25)
         {
             power = 1;
-            print(power);
+            fill.color = white;
+            // print(power);
         }
         else if (slider.value >25 && slider.value < 50)
         {
             power = 2;
-            print(power);
+            fill.color = yellow;
+            // fill.color = yellow;
+            // print(power);
         }
         else if (slider.value > 50 && slider.value < 75)
         {
             power = 3;
-            print(power);
+            fill.color = orange;
+            // print(power);
         }
         else if (slider.value > 75 && slider.value < 100)
         {
             power = 4;
-            print(power);
+            fill.color = red;
+            // print(power);
         }
         slider.value--;
 

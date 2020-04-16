@@ -9,10 +9,16 @@ public class PlayerMovement : MonoBehaviour
     public float xMovement = 20f;
     public float yMovement = 20f;
     public SpriteRenderer spr;
+
+    
+    public Sprite BaseLarry;
+    public Sprite LarryLevel1;
+    public Sprite LarryLevel2;
+    public Sprite LarryLevel3;
+
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -22,6 +28,31 @@ public class PlayerMovement : MonoBehaviour
         float deceleration = acceleration;
         float moveInputX = Input.GetAxisRaw("Horizontal");
         float moveInputY = Input.GetAxisRaw("Vertical");
+        float power = SliderScript.power;
+
+        // spr = GetComponent<SpriteRenderer>();
+        
+
+        //chane image based on sliderVal
+        print(power);
+        switch(power) {
+            case 1:
+                spr.sprite = BaseLarry;
+                break;
+            case 2:
+                spr.sprite = LarryLevel1;
+                break;
+            case 3:
+                spr.sprite = LarryLevel2;
+                break;
+            case 4:
+                spr.sprite = LarryLevel3;
+                break;
+            default: 
+                spr.sprite = BaseLarry;
+                break;
+        }
+
         /*if (Input.GetKey("w"))
         {
             Debug.Log("w");
