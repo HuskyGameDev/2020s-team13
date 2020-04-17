@@ -22,10 +22,12 @@ public class SliderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    // Checks to see if the O key is pressed, increases the value of the slider's position
         if(Input.GetKeyDown("o"))
         {
             slider.value = slider.value + slide;
         }
+   // Constantly checks the slider's value to determine the power level
         if(slider.value < 25)
         {
             power = 1;
@@ -51,6 +53,7 @@ public class SliderScript : MonoBehaviour
             fill.color = red;
             // print(power);
         }
+ // Adds some challenge to keeping a consistent power level while making it possible to decrease your power
         slider.value--;
 
     }
