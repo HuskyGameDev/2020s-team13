@@ -16,9 +16,21 @@ public class PlayerMovement : MonoBehaviour
     public Sprite LarryLevel2;
     public Sprite LarryLevel3;
 
+    public AudioSource[] sounds;
+    public AudioSource soundlr;
+    public AudioSource soundud;
+
+    private bool psoundlr;
+    private bool psoundud;
+
     // Start is called before the first frame update
     void Start()
     {
+        sounds = GetComponents<AudioSource>();
+        soundlr = sounds[0];
+        soundud = sounds[1];
+        psoundlr = false;
+        psoundud = false;
     }
 
     // Update is called once per frame
@@ -53,6 +65,22 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
 
+        if((!soundlr.isPlaying && !soundud.isPlaying) && (psoundlr || psoundud))
+        {
+            if (psoundud)
+            {
+                soundud.Play();
+                psoundlr = false;
+                psoundud = false;
+            }
+            else
+            {
+                soundlr.Play();
+                psoundlr = false;
+                psoundud = false;
+            }
+        }
+
         /*if (Input.GetKey("w"))
         {
             Debug.Log("w");
@@ -82,15 +110,19 @@ public class PlayerMovement : MonoBehaviour
         if (moveInputX != 0)
         {
             velocity.x = Mathf.MoveTowards(velocity.x, xMovement * moveInputX, acceleration * Time.deltaTime);
+            psoundlr = true;
         }
         else if (moveInputY != 0)
         {
             velocity.y = Mathf.MoveTowards(velocity.y, yMovement * moveInputY, acceleration * Time.deltaTime);
+            psoundud = true;
         }
         else
         {
             velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
             velocity.y = Mathf.MoveTowards(velocity.y, 0, deceleration * Time.deltaTime);
+            psoundlr = false;
+            psoundud = false;
         }
 
         transform.Translate(velocity * Time.deltaTime);
