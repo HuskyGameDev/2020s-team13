@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         
 
         //chane image based on sliderVal
-        print(power);
+        // print(power);
         switch(power) {
             case 1:
                 spr.sprite = BaseLarry;
