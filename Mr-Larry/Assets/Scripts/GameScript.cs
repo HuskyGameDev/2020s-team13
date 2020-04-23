@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 public class GameScript : MonoBehaviour
 {
     public static bool IsPaused;
+    public static bool IsGameOver;
+    public GameObject gameOverMenu;
     public GameObject pauseMenu;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +18,12 @@ public class GameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        float timer = Timer.currentTime;
+        if (timer <= 0)
+        {
+            GameOver();
+        }
+        if (Input.GetKeyDown("p"))
         {
             if (IsPaused)
             {
@@ -26,7 +34,11 @@ public class GameScript : MonoBehaviour
                 Pause();
             }
         }
-        if(Input.GetKeyDown(KeyCode.Return) && IsPaused)
+        if(Input.GetKeyDown(KeyCode.Return) && (IsPaused||IsGameOver))
+        {
+            LoadMenu();
+        }
+        if(Input.GetKeyDown(KeyCode.Escape) && (IsPaused||IsGameOver))
         {
             Quit();
         }
@@ -47,13 +59,19 @@ public class GameScript : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1f;
-        pauseMenu.SetActive(true);
+        pauseMenu.SetActive(false);
         IsPaused = false;
     }
     void Pause()
     {
         Time.timeScale = 0f;
-        pauseMenu.SetActive(false);
+        pauseMenu.SetActive(true);
         IsPaused = true;
+    }
+    void GameOver()
+    {
+        Time.timeScale = 0f;
+        gameOverMenu.SetActive(true);
+        IsGameOver = true;
     }
 }

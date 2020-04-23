@@ -19,6 +19,5 @@ public class Score : MonoBehaviour
     {
         int ScoreNum = MunchScript.score;
         txt.text = "Score: " + ScoreNum;
-        print(ScoreNum);
     }
 }
